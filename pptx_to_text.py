@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 import tkinter as tk
 from tkinter import filedialog, messagebox
+import webbrowser
 
 from pptx import Presentation
 
@@ -126,10 +127,27 @@ def run_gui() -> int:
     tk.Button(root, text="Save As...", width=12, command=browse_output).grid(row=3, column=1, **pad)
 
     tk.Button(root, text="Convert", width=16, command=convert).grid(row=4, column=0, pady=16)
-    tk.Label(
-        root,
-        text="Created by Dan Rafuse using PyCharm and Codex",
-    ).grid(row=5, column=0, sticky="w", padx=12, pady=(0, 10))
+
+    credits = tk.Frame(root)
+    credits.grid(row=5, column=0, sticky="w", padx=12, pady=(0, 10))
+
+    tk.Label(credits, text="Created by Dan Rafuse - ").pack(side="left")
+
+    github = tk.Label(credits, text="github.com/drafuse", fg="blue", cursor="hand2")
+    github.pack(side="left")
+    github.bind("<Button-1>", lambda _e: webbrowser.open("https://github.com/drafuse"))
+
+    tk.Label(credits, text=" using ").pack(side="left")
+
+    pycharm = tk.Label(credits, text="PyCharm", fg="blue", cursor="hand2")
+    pycharm.pack(side="left")
+    pycharm.bind("<Button-1>", lambda _e: webbrowser.open("https://www.jetbrains.com/pycharm/"))
+
+    tk.Label(credits, text=" and ").pack(side="left")
+
+    codex = tk.Label(credits, text="Codex", fg="blue", cursor="hand2")
+    codex.pack(side="left")
+    codex.bind("<Button-1>", lambda _e: webbrowser.open("https://openai.com/codex/"))
 
     root.mainloop()
     return 0
