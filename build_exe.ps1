@@ -14,6 +14,7 @@ Write-Host "Installing/updating build dependencies..."
 Write-Host "Building standalone executable..."
 .\venv\Scripts\python.exe -m PyInstaller `
     --onefile `
+    --noconsole `
     --name $AppName `
     --clean `
     .\pptx_to_text.py
