@@ -63,7 +63,7 @@ def run_cli(pptx_path: Path, output_txt: Path | None) -> int:
 def run_gui() -> int:
     root = tk.Tk()
     root.title("PowerPoint to Text")
-    root.geometry("640x240")
+    root.geometry("640x280")
     root.resizable(False, False)
 
     input_var = tk.StringVar()
@@ -125,7 +125,11 @@ def run_gui() -> int:
     tk.Entry(root, textvariable=output_var, width=62).grid(row=3, column=0, sticky="we", **pad)
     tk.Button(root, text="Save As...", width=12, command=browse_output).grid(row=3, column=1, **pad)
 
-    tk.Button(root, text="Convert", width=16, command=convert).grid(row=4, column=0, pady=20)
+    tk.Button(root, text="Convert", width=16, command=convert).grid(row=4, column=0, pady=16)
+    tk.Label(
+        root,
+        text="Created by Dan Rafuse using PyCharm and Codex",
+    ).grid(row=5, column=0, sticky="w", padx=12, pady=(0, 10))
 
     root.mainloop()
     return 0
