@@ -1,11 +1,20 @@
 from pptx import Presentation
 from pathlib import Path
+import argparse
 
-# --------------------------------------------------
-# User inputs
-# --------------------------------------------------
-pptx_path = Path("C:/DRAFUSE/ICMP/Iraq/Training/Trimble DGPS/Training/powerpoints/Day 1 Intro and CRS.pptx")
-output_txt = Path("C:/DRAFUSE/ICMP/Iraq/Training/Trimble DGPS/Training/powerpoints/Day 1 Intro and CRS.txt")
+parser = argparse.ArgumentParser(description="Extract text from a .pptx file.")
+parser.add_argument("pptx_path", type=Path, help="Path to the input .pptx file")
+parser.add_argument(
+    "-o",
+    "--output",
+    dest="output_txt",
+    type=Path,
+    help="Path to output .txt file (default: same name as input)",
+)
+args = parser.parse_args()
+
+pptx_path = args.pptx_path
+output_txt = args.output_txt or pptx_path.with_suffix(".txt")
 
 # --------------------------------------------------
 # Load presentation
